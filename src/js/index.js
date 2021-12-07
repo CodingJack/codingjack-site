@@ -135,3 +135,5 @@ window.onReady = e => {
   window.addEventListener( 'resize', onResize );
   bg.addEventListener( 'click', onClick );
 };
+
+console.log( 'wasup homie' );
