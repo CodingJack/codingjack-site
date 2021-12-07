@@ -1,0 +1,20 @@
+<html>
+    <head>
+      <meta charset="utf-8">
+      <title>CodingJack</title>
+      <meta name="description" content="dev">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="shortcut icon" href="favicon.ico">
+      <link rel="preload" href="dist/media/jambi.mp3" as="fetch" crossorigin>
+      <style>html{overflow:hidden}body{background-color:#000;overflow:hidden}#bg,#bright{visibility:hidden}audio{visibility:hidden}</style>
+    </head>
+    <body>
+      <audio id="audio" src="dist/media/jambi.mp3" preload="auto"></audio>
+      <div id="wrap"><div id="player"></div></div>
+      <div id="loading">Loading Visuals...</div>
+      <script src='dist/js/vendors/vmagic-vendors.min.js?ver=1.0.0'></script>
+      <script src='dist/js/vmagic.min.js?ver=1.0.0'></script>
+      <script>function onYouTubeIframeAPIReady(){new YT.Player("player",{width:"100%",height:"100%",videoId:"MM62wjLrgmA",mute:1,playerVars:{playsinline:1,controls:0,disablekb:1,fs:0,iv_load_policy:3,modestbranding:1,mute:1},events:{onReady:window.onReady,onStateChange:window.onStateChange}})}</script>
+      <script src="https://www.youtube.com/iframe_api"></script>
+    </body>
+</html>
