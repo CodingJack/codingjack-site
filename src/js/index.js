@@ -10,9 +10,9 @@ const bg = document.getElementById( 'wrap' );
 const audio = document.getElementById( 'audio' );
 const loader = document.getElementById( 'loading' );
 const style = document.createElement( 'style' );
-document.head.appendChild( style );
+const cat = document.getElementById( 'cat' );
 
-const getAudio = ( url, audioContext ) => {
+const getAudio = async ( url, audioContext ) => {
   fetch( url, { cache: 'force-cache' } )
     .then( response => response.arrayBuffer() )
     .then( arrayBuffer => audioContext.decodeAudioData( arrayBuffer ) )
@@ -56,17 +56,20 @@ const onDraw = () => {
     const fixed = data[ curTime ].toFixed( 2 );
     const blur = parseFloat( fixed, 10 ) * scaler;
     const adjustedBlur = Math.max( blur, 0 );
+    const maxedBlur = adjustedBlur * 5;
     bg.style.filter = `blur(${ adjustedBlur }px) brightness(5)`;
     style.innerHTML = `
-      #wrap:after {background: repeating-conic-gradient(from 235deg, #000, transparent ${ adjustedBlur * 5 }deg)};
-      #wrap:before {background: repeating-radial-gradient(circle, transparent, #000 ${adjustedBlur * 5}}%)};
+      #wrap:before {background: repeating-radial-gradient(circle, transparent, #000 ${ maxedBlur }%)};
+      #wrap:after {background: repeating-conic-gradient(from 235deg, #000, transparent ${ maxedBlur }deg)};
     `;
   }
   window.requestAnimationFrame( onDraw );
 };
 
 const onEnded = () => {
+  cat.classList.remove(' ready' );
   bg.classList.remove( 'run' );
+  bg.classList.add( 'ready' );
   bg.addEventListener( 'click', onClick );
 };
 
@@ -76,9 +79,11 @@ const onReady = audioBuffer => {
   }
   loader.classList.remove( 'show' );
   bg.classList.add( 'run' );
+  cat.classList.add( 'ready' );
   audio.volume = 1;
   audio.currentTime = 0;
   player.seekTo( 0 );
+  document.head.appendChild( style );
   window.requestAnimationFrame( onDraw );
 };
 
@@ -107,7 +112,7 @@ window.onStateChange = e => {
 
 const onClick = () => {
   bg.removeEventListener( 'click', onClick );
-  bg.style.opacity = 0;
+  bg.classList.remove( 'ready' );
   loader.classList.add( 'show' );
   player.playVideo();
   audio.volume = 0;
@@ -129,5 +134,4 @@ window.onReady = e => {
   bg.classList.add( 'ready' );
   window.addEventListener( 'resize', onResize );
   bg.addEventListener( 'click', onClick );
-  bg.style.opacity = 1;
 };

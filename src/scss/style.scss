@@ -9,14 +9,35 @@ audio {
   position: absolute;
   top: 50%;
   left: 50%;
-  font-family: 'Courier New', Courier, monospace;
-  font-size: 24px;
-  color: white;
   text-align: center;
   display: none;
+  width: 250px;
   transform: translate(-50%, -50%);
-  &.show {
+  border-bottom: 0px solid white;
+  &:before {
+    position: absolute;
+    left: 0;
+    bottom: -10px;
     display: block;
+    background: white;
+    width: 0;
+    height: 1px;
+    content: '';
+    -webkit-animation: loading 2s linear infinite;
+    animation: loading 2s linear infinite;
+  }
+  &:after {
+    position: relative;
+    display: block;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 24px;
+    color: white;
+    text-align: center;
+    width: 100%;
+    content: 'Loading Visuals';
+  }
+  &.show {
+    display: inline-block;
   }
 }
 #player {
@@ -66,7 +87,7 @@ audio {
     content: "";
     pointer-events: none;
     filter: inherit;
-    transition: background 0.3s ease-out;
+    transition: all 0.1s linear;
   }
   &:after {
     position: absolute;
@@ -80,17 +101,17 @@ audio {
     content: "";
     pointer-events: none;
     filter: inherit;
-    transition: background 0.3s ease-out;
+    transition: all 0.1s linear;
   }
   &.run {
     transition: all 0.2s cubic-bezier(0.230, 1.000, 0.320, 1.000);
     -webkit-animation: spin 10s linear infinite;
     animation: spin 10s linear infinite;
     cursor: auto;
-    opacity: 1 !important;
+    opacity: 1;
   }
   &.ready {
-    visibility: visible;
+    opacity: 1;
   }
   &.reverse {
     width: 75vw;
@@ -100,14 +121,19 @@ audio {
     filter: inherit;
   }
 }
-a {
-  opacity: 1;
+#cat {
   line-height: 0;
-  top: 20px;
+  top: 30px;
   right: 0;
   transform: scale(0.65);
-  &:hover {
-    opacity: 0.75;
+  pointer-events: none;
+  mix-blend-mode: color-burn;
+  &.ready {
+    opacity: 1;
+    pointer-events: all;
+    &:hover {
+      opacity: 0.75;
+    }
   }
 }
 @keyframes spin {
@@ -118,5 +144,35 @@ a {
 @keyframes spin2 {
   100% { 
     transform: translate3d(-50%, -50%, 0.01px) rotate(-360deg);
+  }
+}
+@keyframes loading {
+  0% { 
+    width: 0;
+    left: 0;
+  }
+  15% { 
+    width: 75px;
+    left: 0;
+  }
+  30% { 
+    width: 150px;
+    left: 0;
+  }
+  45% { 
+    width: 225px;
+    left: 0;
+  }
+  60% { 
+    width: 150px;
+    left: 33%;
+  }
+  75% { 
+    width: 75px;
+    left: 66%;
+  }
+  90% { 
+    width: 0;
+    left: 100%;
   }
 }

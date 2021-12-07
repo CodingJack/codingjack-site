@@ -5,16 +5,16 @@
       <meta name="description" content="dev">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <link rel="shortcut icon" href="favicon.ico">
-      <style>html{overflow:hidden}body{background-color:#000;overflow:hidden}#bg,#bright{visibility:hidden}audio{visibility:hidden}a{position: absolute; opacity: 0; transition: opacity 0.3s ease}</style>
+      <style>html{overflow:hidden}body{background-color:#000;overflow:hidden}#bg{opacity:0}audio{visibility:hidden}#cat{position: absolute; opacity: 0; transition: opacity 0.3s ease}</style>
     </head>
     <body>
-      <audio id="audio" src="dist/media/jambi.mp3" preload="auto"></audio>
+      <audio id="audio" src="dist/media/jambi.mp3" preload="meta"></audio>
       <div id="wrap"><div id="player"></div></div>
-      <div id="loading">Loading Visuals...</div>
+      <div id="loading"></div>
+      <a id="cat" href="https://github.com/CodingJack/codingjack-site"><img src="dist/img/github.png"></a>
       <script src='dist/js/vendors/vmagic-vendors.min.js?ver=1.0.0'></script>
       <script src='dist/js/vmagic.min.js?ver=1.0.0'></script>
       <script>function onYouTubeIframeAPIReady(){new YT.Player("player",{width:"100%",height:"100%",videoId:"MM62wjLrgmA",mute:1,playerVars:{playsinline:1,controls:0,disablekb:1,fs:0,iv_load_policy:3,modestbranding:1,mute:1},events:{onReady:window.onReady,onStateChange:window.onStateChange}})}</script>
       <script src="https://www.youtube.com/iframe_api"></script>
-      <a href="https://github.com/CodingJack/codingjack-site"><img src="dist/img/github.png"></a>
     </body>
 </html>
