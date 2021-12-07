@@ -13,7 +13,7 @@ const style = document.createElement( 'style' );
 document.head.appendChild( style );
 
 const getAudio = ( url, audioContext ) => {
-  fetch( url )
+  fetch( url, { cache: 'force-cache' } )
     .then( response => response.arrayBuffer() )
     .then( arrayBuffer => audioContext.decodeAudioData( arrayBuffer ) )
     .then( audioBuffer => {
@@ -76,6 +76,9 @@ const onReady = audioBuffer => {
   }
   loader.classList.remove( 'show' );
   bg.classList.add( 'run' );
+  audio.volume = 1;
+  audio.currentTime = 0;
+  player.seekTo( 0 );
   window.requestAnimationFrame( onDraw );
 };
 
@@ -107,6 +110,7 @@ const onClick = () => {
   bg.style.opacity = 0;
   loader.classList.add( 'show' );
   player.playVideo();
+  audio.volume = 0;
   audio.play();
 };
 
