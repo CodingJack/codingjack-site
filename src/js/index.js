@@ -57,9 +57,9 @@ const onDraw = () => {
     const blur = parseFloat( fixed, 10 ) * scaler;
     const adjustedBlur = Math.max( blur, 0 );
     const maxedBlur = adjustedBlur * 5;
-    bg.style.filter = `blur(${ adjustedBlur }px) brightness(5)`;
+    bg.style.filter = `blur(${ adjustedBlur }px)`;
     style.innerHTML = `
-      #wrap:before {background: repeating-radial-gradient(circle, transparent, #000 ${ maxedBlur }%)};
+      #wrap:before {background: repeating-radial-gradient(circle, #000, transparent ${ maxedBlur }%)};
       #wrap:after {background: repeating-conic-gradient(from 235deg, #000, transparent ${ maxedBlur }deg)};
     `;
   }
@@ -82,7 +82,6 @@ const onReady = audioBuffer => {
   cat.classList.add( 'ready' );
   audio.volume = 1;
   audio.currentTime = 0;
-  player.seekTo( 0 );
   document.head.appendChild( style );
   window.requestAnimationFrame( onDraw );
 };
@@ -114,6 +113,7 @@ const onClick = () => {
   bg.removeEventListener( 'click', onClick );
   bg.classList.remove( 'ready' );
   loader.classList.add( 'show' );
+  player.seekTo( 65 );
   player.playVideo();
   audio.volume = 0;
   audio.play();
@@ -137,3 +137,4 @@ window.onReady = e => {
 };
 
 console.log( 'wasup homie' );
+console.log( 'https://www.youtube.com/watch?v=ik7wAiPtrFM' );
