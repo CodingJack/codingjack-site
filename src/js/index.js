@@ -136,5 +136,4 @@ window.onReady = e => {
   bg.addEventListener( 'click', onClick );
 };
 
-console.log( 'wasup homie' );
-console.log( 'https://www.youtube.com/watch?v=ik7wAiPtrFM' );
+console.log( 'what do you see' );
